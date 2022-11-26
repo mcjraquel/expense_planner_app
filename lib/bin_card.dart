@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import './bin.dart';
 
 class BinCard extends StatelessWidget {
-  final String name;
-  final double total;
+  final Bin bin;
 
-  BinCard(this.name, this.total);
+  BinCard(this.bin);
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +19,13 @@ class BinCard extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      name.toString(),
+                      bin.name.toString(),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Text(
-                      total.toString(),
+                      bin.total.toString(),
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 16),
                     ),

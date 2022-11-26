@@ -56,7 +56,7 @@ class _SummaryState extends State<SummaryPage> {
           padding: const EdgeInsets.only(top: 15, bottom: 15),
           child: Column(children: <Widget>[
             AddNewBinCard(),
-            ...bins.map((bin) => BinCard(bin.name, bin.total)).toList(),
+            ...bins.map((bin) => BinCard(bin)).toList(),
           ]),
         )));
   }
