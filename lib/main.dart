@@ -58,6 +58,13 @@ class _MainState extends State<MyHomePage> {
         date: DateTime.now())
   ];
 
+  var _currentTab = 'summary';
+
+  void _changeTab(String tab) {
+    setState(() {
+      _currentTab = tab;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
