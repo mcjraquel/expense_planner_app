@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './bin.dart';
-import './bin_card.dart';
+import 'models/bin.dart';
+import 'widgets/bin_card.dart';
 
 void main() {
   runApp(const MyApp());
