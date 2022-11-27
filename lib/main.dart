@@ -46,6 +46,15 @@ class _MainState extends State<MyHomePage> {
     Bin(id: '1', type: 'Inflow', name: 'Emergency Fund', total: 8000),
     Bin(id: '2', type: 'Outflow', name: 'Trip Savings', total: 5000)
   ];
+  final List<Transaction> transactions = [
+    Transaction(
+        id: '1',
+        type: 'Inflow',
+        bin: '1',
+        purpose: 'basta',
+        amount: 500,
+        date: DateTime.now())
+  ];
 
   @override
   Widget build(BuildContext context) {
