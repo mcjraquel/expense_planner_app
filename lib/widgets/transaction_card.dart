@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/transaction.dart';
@@ -171,9 +170,6 @@ class NewTxFormState extends State<NewTxForm> {
             TextField(
               decoration: const InputDecoration(labelText: 'Amount'),
               keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
-              ],
               controller: _newTxAmount,
             ),
           ],
