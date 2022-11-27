@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './bin.dart';
+import '../../models/bin.dart';
 
 class BinCard extends StatelessWidget {
   final Bin bin;
@@ -43,20 +43,20 @@ class AddNewBinCard extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10, bottom: 10),
         width: MediaQuery.of(context).size.width * 0.8,
         child: Card(
-            child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    // To add: Plus icon for adding new bin
-                    Text(
-                      'ADD NEW BIN',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ))));
+                child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const <Widget>[
+                        // To add: Plus icon for adding new bin
+                        Text(
+                          'ADD NEW BIN',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ],
+                    )))));
   }
 }
