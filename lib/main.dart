@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'models/bin.dart';
 import 'summary_page.dart';
 
 void main() {
