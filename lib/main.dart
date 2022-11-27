@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'models/bin.dart';
+import 'models/transaction.dart';
 import 'summary_page.dart';
+import 'transactions_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,6 +61,22 @@ class _MainState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Summary')), body: SummaryPage(bins));
+      appBar: AppBar(title: Text(_currentTab)),
+      body: _currentTab == 'summary'
+          ? SummaryPage(bins: bins, addNewBinFunction: addNewBintoBinsList)
+          : TransactionsPage(transactions: transactions),
+      bottomNavigationBar: BottomAppBar(
+          child: SizedBox(
+        height: 80,
+        child: Row(children: <Widget>[
+          TextButton(
+              onPressed: () => _changeTab('summary'),
+              child: const Text("summary")),
+          TextButton(
+              onPressed: () => _changeTab('transactions'),
+              child: const Text("transactions"))
+        ]),
+      )),
+    );
   }
 }
