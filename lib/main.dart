@@ -43,8 +43,8 @@ class SummaryPage extends StatefulWidget {
 
 class _SummaryState extends State<SummaryPage> {
   final List<Bin> bins = [
-    Bin(id: '1', name: 'Emergency Fund', total: 8000),
-    Bin(id: '2', name: 'Trip Savings', total: 5000)
+    Bin(id: '1', type: 'Inflow', name: 'Emergency Fund', total: 8000),
+    Bin(id: '2', type: 'Outflow', name: 'Trip Savings', total: 5000)
   ];
 
   @override
