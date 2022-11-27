@@ -91,12 +91,14 @@ class _MainState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(_currentTab)),
-      body: _currentTab == 'summary'
-          ? SummaryPage(bins: bins, addNewBinFunction: addNewBintoBinsList)
-          : TransactionsPage(
-              transactions: transactions,
-              bins: bins,
-              addNewTxFunction: addNewTransactiontoTransactionsList),
+      body: SingleChildScrollView(
+        child: _currentTab == 'summary'
+            ? SummaryPage(bins: bins, addNewBinFunction: addNewBintoBinsList)
+            : TransactionsPage(
+                transactions: transactions,
+                bins: bins,
+                addNewTxFunction: addNewTransactiontoTransactionsList),
+      ),
       bottomNavigationBar: BottomAppBar(
           child: SizedBox(
         height: 80,
