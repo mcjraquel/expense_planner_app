@@ -5,7 +5,7 @@ import '../../models/bin.dart';
 class BinCard extends StatelessWidget {
   final Bin bin;
 
-  BinCard(this.bin);
+  const BinCard({super.key, required this.bin});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,11 @@ class BinCard extends StatelessWidget {
 }
 
 class AddNewBinCard extends StatelessWidget {
-  AddNewBinCard();
+  final List<Bin> bins;
+  final Function addNewBinFunction;
+
+  const AddNewBinCard(
+      {super.key, required this.bins, required this.addNewBinFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +47,15 @@ class AddNewBinCard extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10, bottom: 10),
         width: MediaQuery.of(context).size.width * 0.8,
         child: Card(
+            child: InkWell(
+                onTap: () {
+                  print('add new bin');
+                  showDialog(
+                    context: context,
+                    builder: (context) => NewBinForm(
+                        bins: bins, addBinFunction: addNewBinFunction),
+                  );
+                },
                 child: Container(
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 40),
@@ -58,5 +71,60 @@ class AddNewBinCard extends StatelessWidget {
                         ),
                       ],
                     )))));
+  }
+}
+
+class NewBinForm extends StatefulWidget {
+  final List<Bin> bins;
+  final Function addBinFunction;
+
+  const NewBinForm(
+      {super.key, required this.bins, required this.addBinFunction});
+
+  @override
+  State<NewBinForm> createState() => NewBinFormState();
+}
+
+class NewBinFormState extends State<NewBinForm> {
+  final _newBinName = TextEditingController();
+  String _newBinType = 'Inflow';
+  var binTypes = ['Inflow', 'Outflow'];
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+        title: const Text('Add New Bin'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            TextField(
+              decoration: const InputDecoration(labelText: 'Bin Name'),
+              controller: _newBinName,
+            ),
+            DropdownButton(
+                value: _newBinType,
+                items: binTypes.map((String binType) {
+                  return DropdownMenuItem(
+                    value: binType,
+                    child: Text(binType),
+                  );
+                }).toList(),
+                onChanged: (String? newBinTypeValue) {
+                  setState(() {
+                    _newBinType = newBinTypeValue!;
+                  });
+                })
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              widget.addBinFunction(_newBinName.text, _newBinType);
+              Navigator.of(context).pop();
+            },
+            child: const Text("ADD"),
+          )
+        ]);
   }
 }

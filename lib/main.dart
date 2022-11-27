@@ -65,6 +65,14 @@ class _MainState extends State<MyHomePage> {
       _currentTab = tab;
     });
   }
+
+  void addNewBintoBinsList(String newBinName, String newBinType) {
+    final newBin = Bin(id: '3', name: newBinName, type: newBinType, total: 0);
+    setState(() {
+      bins.add(newBin);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
