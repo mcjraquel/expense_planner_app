@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'models/bin.dart';
-import 'widgets/bin_card.dart';
+import 'summary_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,21 +26,21 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const SummaryPage(title: 'Summary'),
+      home: const MyHomePage(title: 'Summary'),
     );
   }
 }
 
-class SummaryPage extends StatefulWidget {
-  const SummaryPage({super.key, required this.title});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<SummaryPage> createState() => _SummaryState();
+  State<MyHomePage> createState() => _MainState();
 }
 
-class _SummaryState extends State<SummaryPage> {
+class _MainState extends State<MyHomePage> {
   final List<Bin> bins = [
     Bin(id: '1', type: 'Inflow', name: 'Emergency Fund', total: 8000),
     Bin(id: '2', type: 'Outflow', name: 'Trip Savings', total: 5000)
@@ -50,14 +49,6 @@ class _SummaryState extends State<SummaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Summary')),
-        body: Center(
-            child: Container(
-          padding: const EdgeInsets.only(top: 15, bottom: 15),
-          child: Column(children: <Widget>[
-            AddNewBinCard(),
-            ...bins.map((bin) => BinCard(bin)).toList(),
-          ]),
-        )));
+        appBar: AppBar(title: const Text('Summary')), body: SummaryPage(bins));
   }
 }
