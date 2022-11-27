@@ -73,13 +73,30 @@ class _MainState extends State<MyHomePage> {
     });
   }
 
+  void addNewTransactiontoTransactionsList(String newTxType,
+      String newTxPurpose, String newTxBin, double newTxAmount) {
+    final newTx = Transaction(
+        id: '2',
+        type: newTxType,
+        purpose: newTxPurpose,
+        bin: newTxBin,
+        amount: newTxAmount,
+        date: DateTime.now());
+    setState(() {
+      transactions.add(newTx);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(_currentTab)),
       body: _currentTab == 'summary'
           ? SummaryPage(bins: bins, addNewBinFunction: addNewBintoBinsList)
-          : TransactionsPage(transactions: transactions),
+          : TransactionsPage(
+              transactions: transactions,
+              bins: bins,
+              addNewTxFunction: addNewTransactiontoTransactionsList),
       bottomNavigationBar: BottomAppBar(
           child: SizedBox(
         height: 80,

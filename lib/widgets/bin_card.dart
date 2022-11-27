@@ -49,7 +49,6 @@ class AddNewBinCard extends StatelessWidget {
         child: Card(
             child: InkWell(
                 onTap: () {
-                  print('add new bin');
                   showDialog(
                     context: context,
                     builder: (context) => NewBinForm(
