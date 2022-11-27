@@ -1,17 +1,17 @@
 class Transaction {
-  final String? id;
-  final String? type;
-  final String? purpose;
-  final String? bin;
-  final double? amount;
-  final DateTime? date;
+  final String id;
+  final String type;
+  final String purpose;
+  final String bin;
+  final double amount;
+  final DateTime date;
 
   Transaction({
-    this.id,
-    this.type,
-    this.bin,
-    this.purpose,
-    this.amount,
-    this.date,
+    required this.id,
+    required this.type,
+    required this.bin,
+    required this.purpose,
+    required this.amount,
+    required this.date,
   });
 }
