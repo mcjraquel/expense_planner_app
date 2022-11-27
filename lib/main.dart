@@ -75,6 +75,7 @@ class _MainState extends State<MyHomePage> {
 
   void addNewTransactiontoTransactionsList(String newTxType,
       String newTxPurpose, String newTxBin, double newTxAmount) {
+    newTxAmount = newTxType == 'Inflow' ? newTxAmount : -newTxAmount;
     final newTx = Transaction(
         id: '2',
         type: newTxType,
@@ -85,6 +86,15 @@ class _MainState extends State<MyHomePage> {
     setState(() {
       transactions.add(newTx);
     });
+    updateBinTotal(newTxBin, newTxAmount);
+  }
+
+  void updateBinTotal(String binToUpdate, double amount) {
+    var binObj = bins.singleWhere((bin) => bin.id == binToUpdate);
+    var binTransactions = transactions.where((tx) => tx.bin == binObj.id);
+    double binTotal =
+        binTransactions.map((tx) => tx.amount).reduce((sum, amt) => sum + amt);
+    binObj.total = binTotal;
   }
 
   @override
