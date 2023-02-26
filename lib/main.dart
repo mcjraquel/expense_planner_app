@@ -5,11 +5,13 @@ import 'models/bin.dart';
 import 'models/transaction.dart';
 import 'providers/dark_mode.dart';
 import 'providers/bins.dart';
+import 'providers/transactions.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => DarkMode()),
     ChangeNotifierProvider(create: (_) => Bins()),
+    ChangeNotifierProvider(create: (_) => Transactions()),
   ], child: const MyApp()));
 }
 
