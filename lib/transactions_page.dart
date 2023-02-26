@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'models/transaction.dart';
-import 'models/bin.dart';
 import 'widgets/transaction_card.dart';
 import 'providers/transactions.dart';
 import 'providers/bins.dart';

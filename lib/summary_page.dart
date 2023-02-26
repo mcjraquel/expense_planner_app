@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'models/bin.dart';
 import 'widgets/bin_card.dart';
 
 import 'providers/bins.dart';

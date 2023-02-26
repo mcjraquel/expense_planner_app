@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'models/bin.dart';
-import 'models/transaction.dart';
+
 import 'providers/dark_mode.dart';
 import 'providers/bins.dart';
 import 'providers/current_currency.dart';
