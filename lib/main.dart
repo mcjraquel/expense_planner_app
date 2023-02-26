@@ -7,6 +7,7 @@ import 'providers/dark_mode.dart';
 import 'providers/bins.dart';
 import 'providers/current_currency.dart';
 import 'providers/transactions.dart';
+import 'providers/current_tab.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -14,6 +15,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => Bins()),
     ChangeNotifierProvider(create: (_) => Transactions()),
     ChangeNotifierProvider(create: (_) => CurrentCurrency()),
+    ChangeNotifierProvider(create: (_) => CurrentTab()),
   ], child: const MyApp()));
 }
 
@@ -41,36 +43,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MainState extends State<MyHomePage> {
-  var _currentTab = 'summary';
-
-  void _changeTab(String tab) {
-    setState(() {
-      _currentTab = tab;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_currentTab)),
+      // appBar: AppBar(title: Text(_currentTab)),
+      appBar: AppBar(title: Text(context.watch<CurrentTab>().currentTab)),
       body: SingleChildScrollView(
-        child: _currentTab == 'summary'
-            ? SummaryPage(bins: bins, addNewBinFunction: addNewBintoBinsList)
-            : TransactionsPage(
-                transactions: transactions,
-                bins: bins,
-                addNewTxFunction: addNewTransactiontoTransactionsList),
-      ),
+          child: LayoutBuilder(
+              builder: (context, constraints) =>
+                  context.watch<CurrentTab>().currentTabWidget)),
       bottomNavigationBar: BottomAppBar(
           child: SizedBox(
         height: 80,
         child: Row(children: <Widget>[
           TextButton(
-              onPressed: () => _changeTab('summary'),
+              onPressed: () => context.read<CurrentTab>().changeTab('summary'),
               child: const Text("summary")),
           TextButton(
-              onPressed: () => _changeTab('transactions'),
-              child: const Text("transactions"))
+              onPressed: () =>
+                  context.read<CurrentTab>().changeTab('transactions'),
+              child: const Text("transactions")),
+          TextButton(
+              onPressed: () => context.read<CurrentTab>().changeTab('settings'),
+              child: const Text("settings")),
         ]),
       )),
     );
