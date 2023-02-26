@@ -1,6 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/bin.dart';
+import '../screens/bin_detail_screen.dart';
+
+import '../providers/current_currency.dart';
 
 class BinCard extends StatelessWidget {
   final Bin bin;
@@ -9,28 +15,31 @@ class BinCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.simpleCurrency(
+        locale: Platform.localeName,
+        name: context.watch<CurrentCurrency>().currentCurrencyCode);
     return Container(
-        padding: const EdgeInsets.only(top: 10, bottom: 10),
-        width: MediaQuery.of(context).size.width * 0.8,
-        child: Card(
-            child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      bin.name.toString(),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 25),
-                    ),
-                    Text(
-                      bin.total.toString(),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ],
-                ))));
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      width: MediaQuery.of(context).size.width * 0.8,
+      child: Card(
+          child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    bin.name.toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 25),
+                  ),
+                  Text(
+                    formatCurrency.format(bin.total),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ],
+              ))),
+    );
   }
 }
 

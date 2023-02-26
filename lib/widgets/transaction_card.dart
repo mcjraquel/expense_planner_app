@@ -1,8 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/transaction.dart';
 import '../../models/bin.dart';
+
+import '../providers/current_currency.dart';
 
 class TransactionCard extends StatelessWidget {
   final Transaction transaction;
@@ -11,6 +15,9 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.simpleCurrency(
+        locale: Platform.localeName,
+        name: context.watch<CurrentCurrency>().currentCurrencyCode);
     return Container(
         padding: const EdgeInsets.only(top: 5, bottom: 5),
         width: MediaQuery.of(context).size.width * 0.9,
@@ -47,7 +54,7 @@ class TransactionCard extends StatelessWidget {
                       child: Container(
                         alignment: Alignment.centerRight,
                         child: Text(
-                          transaction.amount.toStringAsFixed(2),
+                          formatCurrency.format(transaction.amount),
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 15),
                         ),

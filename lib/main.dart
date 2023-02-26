@@ -5,6 +5,7 @@ import 'models/bin.dart';
 import 'models/transaction.dart';
 import 'providers/dark_mode.dart';
 import 'providers/bins.dart';
+import 'providers/current_currency.dart';
 import 'providers/transactions.dart';
 
 void main() {
@@ -12,6 +13,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => DarkMode()),
     ChangeNotifierProvider(create: (_) => Bins()),
     ChangeNotifierProvider(create: (_) => Transactions()),
+    ChangeNotifierProvider(create: (_) => CurrentCurrency()),
   ], child: const MyApp()));
 }
 
