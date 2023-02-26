@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:currency_picker/currency_picker.dart';
 
+import 'providers/dark_mode.dart';
 import 'providers/current_currency.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -29,6 +30,12 @@ class _SettingsPageState extends State<SettingsPage> {
           );
         },
       ),
+      SwitchListTile(
+        title: const Text('Dark Mode'),
+        value: context.watch<DarkMode>().isDarkMode,
+        onChanged: (bool value) =>
+            context.read<DarkMode>().toggleDarkMode(value),
+      )
     ]);
   }
 }
