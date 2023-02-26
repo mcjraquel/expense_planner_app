@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'models/bin.dart';
 import 'widgets/bin_card.dart';
 
-class SummaryPage extends StatefulWidget {
-  final List<Bin> bins;
-  final Function addNewBinFunction;
+import 'providers/bins.dart';
 
-  const SummaryPage(
-      {super.key, required this.bins, required this.addNewBinFunction});
+class SummaryPage extends StatefulWidget {
+  const SummaryPage({super.key});
 
   @override
   State<SummaryPage> createState() => _SummaryPageState();
@@ -22,8 +21,9 @@ class _SummaryPageState extends State<SummaryPage> {
       padding: const EdgeInsets.only(top: 15, bottom: 15),
       child: Column(children: <Widget>[
         AddNewBinCard(
-            bins: widget.bins, addNewBinFunction: widget.addNewBinFunction),
-        ...widget.bins.map((bin) => BinCard(bin: bin)).toList(),
+            bins: context.watch<Bins>().bins,
+            addNewBinFunction: context.read<Bins>().addNewBintoBinsList),
+        ...context.watch<Bins>().bins.map((bin) => BinCard(bin: bin)).toList(),
       ]),
     ));
   }
