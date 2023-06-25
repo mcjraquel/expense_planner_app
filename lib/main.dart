@@ -2,6 +2,7 @@ import 'package:expense_planner_app/providers/selected_bin.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/bin_detail_screen.dart';
 
 import 'providers/dark_mode.dart';
 import 'providers/bins.dart';
@@ -30,7 +31,9 @@ class MyApp extends StatelessWidget {
         title: 'Financial Tracker App',
         theme: context.watch<DarkMode>().currentTheme,
         home: const MyHomePage(title: 'Summary'),
-        routes: {BinDetailScreen.routeName: (ctx) => const BinDetailScreen()});
+        routes: {
+          BinDetailScreen.routeName: (ctx) => const BinDetailScreen(),
+        });
   }
 }
 
