@@ -3,15 +3,7 @@ import '../models/transaction.dart';
 import '../models/bin.dart';
 
 class Transactions with ChangeNotifier {
-  final List<Transaction> _transactions = [
-    Transaction(
-        id: '1',
-        type: 'Inflow',
-        bin: '1',
-        purpose: 'basta',
-        amount: 500,
-        date: DateTime.now())
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get transactions => _transactions;
 
