@@ -1,6 +1,9 @@
+
+enum TransactionType { inflow, outflow }
+
 class Transaction {
   final String id;
-  final String type;
+  final TransactionType type;
   final String purpose;
   final String bin;
   final double amount;

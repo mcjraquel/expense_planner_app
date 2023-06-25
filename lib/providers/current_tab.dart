@@ -4,19 +4,21 @@ import '../summary_page.dart';
 import '../transactions_page.dart';
 import '../settings_page.dart';
 
+enum AppTab { summary, transactions, settings }
+
 class CurrentTab with ChangeNotifier {
-  String _currentTab = 'summary';
+  AppTab _currentTab = AppTab.summary;
   Widget _currentTabWidget = const SummaryPage();
 
-  String get currentTab => _currentTab;
+  AppTab get currentTab => _currentTab;
   Widget get currentTabWidget => _currentTabWidget;
 
-  void changeTab(String tab) {
+  void changeTab(AppTab tab) {
     _currentTab = tab;
 
-    if (_currentTab == 'summary') {
+    if (_currentTab == AppTab.summary) {
       _currentTabWidget = const SummaryPage();
-    } else if (_currentTab == 'transactions') {
+    } else if (_currentTab == AppTab.transactions) {
       _currentTabWidget = const TransactionsPage();
     } else {
       _currentTabWidget = const SettingsPage();

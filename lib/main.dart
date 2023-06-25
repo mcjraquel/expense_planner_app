@@ -46,7 +46,8 @@ class _MainState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(title: Text(_currentTab)),
-      appBar: AppBar(title: Text(context.watch<CurrentTab>().currentTab)),
+      appBar: AppBar(
+          title: Text(context.watch<CurrentTab>().currentTab.toString())),
       body: SingleChildScrollView(
           child: LayoutBuilder(
               builder: (context, constraints) =>
@@ -56,14 +57,16 @@ class _MainState extends State<MyHomePage> {
         height: 80,
         child: Row(children: <Widget>[
           TextButton(
-              onPressed: () => context.read<CurrentTab>().changeTab('summary'),
+              onPressed: () =>
+                  context.read<CurrentTab>().changeTab(AppTab.summary),
               child: const Text("summary")),
           TextButton(
               onPressed: () =>
-                  context.read<CurrentTab>().changeTab('transactions'),
+                  context.read<CurrentTab>().changeTab(AppTab.transactions),
               child: const Text("transactions")),
           TextButton(
-              onPressed: () => context.read<CurrentTab>().changeTab('settings'),
+              onPressed: () =>
+                  context.read<CurrentTab>().changeTab(AppTab.settings),
               child: const Text("settings")),
         ]),
       )),
