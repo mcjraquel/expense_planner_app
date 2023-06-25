@@ -1,3 +1,4 @@
+import 'package:expense_planner_app/providers/selected_bin.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => Transactions()),
     ChangeNotifierProvider(create: (_) => CurrentCurrency()),
     ChangeNotifierProvider(create: (_) => CurrentTab()),
+    ChangeNotifierProvider(create: (_) => SelectedBin()),
   ], child: const MyApp()));
 }
 
