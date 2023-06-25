@@ -95,8 +95,6 @@ class NewBinForm extends StatefulWidget {
 
 class NewBinFormState extends State<NewBinForm> {
   final _newBinName = TextEditingController();
-  String _newBinType = 'Inflow';
-  var binTypes = ['Inflow', 'Outflow'];
 
   @override
   Widget build(BuildContext context) {
@@ -110,25 +108,12 @@ class NewBinFormState extends State<NewBinForm> {
               decoration: const InputDecoration(labelText: 'Bin Name'),
               controller: _newBinName,
             ),
-            DropdownButton(
-                value: _newBinType,
-                items: binTypes.map((String binType) {
-                  return DropdownMenuItem(
-                    value: binType,
-                    child: Text(binType),
-                  );
-                }).toList(),
-                onChanged: (String? newBinTypeValue) {
-                  setState(() {
-                    _newBinType = newBinTypeValue!;
-                  });
-                })
           ],
         ),
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              widget.addBinFunction(_newBinName.text, _newBinType);
+              widget.addBinFunction(_newBinName.text);
               Navigator.of(context).pop();
             },
             child: const Text("ADD"),
