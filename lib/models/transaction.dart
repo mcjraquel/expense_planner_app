@@ -1,3 +1,6 @@
+import 'package:uuid/uuid.dart';
+
+const uuid = Uuid();
 
 enum TransactionType { inflow, outflow }
 
@@ -10,11 +13,10 @@ class Transaction {
   final DateTime date;
 
   Transaction({
-    required this.id,
     required this.type,
     required this.bin,
     required this.purpose,
     required this.amount,
     required this.date,
-  });
+  }) : id = uuid.v4();
 }

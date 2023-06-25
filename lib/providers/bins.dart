@@ -9,8 +9,8 @@ class Bins with ChangeNotifier {
 
   List<Bin> get bins => _bins;
 
-  void addNewBintoBinsList(String newBinName, String newBinType) {
-    final newBin = Bin(id: '3', name: newBinName, type: newBinType, total: 0);
+  void addNewBintoBinsList(String newBinName) {
+    final newBin = Bin(name: newBinName, total: 0);
     _bins.add(newBin);
     notifyListeners();
   }

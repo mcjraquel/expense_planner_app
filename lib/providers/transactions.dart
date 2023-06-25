@@ -16,14 +16,14 @@ class Transactions with ChangeNotifier {
   List<Transaction> get transactions => _transactions;
 
   void addNewTransactiontoTransactionsList(
-      String newTxType,
+      TransactionType newTxType,
       String newTxPurpose,
       String newTxBin,
       double newTxAmount,
       List<Bin> existingBinsList) {
-    newTxAmount = newTxType == 'Inflow' ? newTxAmount : -newTxAmount;
+    newTxAmount =
+        newTxType == TransactionType.inflow ? newTxAmount : -newTxAmount;
     final newTx = Transaction(
-        id: '2',
         type: newTxType,
         purpose: newTxPurpose,
         bin: newTxBin,
